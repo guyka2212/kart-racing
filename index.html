@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kart Racing</title>
+<meta name="description" content="Kart Racing: a free kart racing sim for Windows. Steering wheel with force feedback, controller, keyboard and VR. 27 tracks, tyre wear and temperature, pit stops.">
+<meta property="og:title" content="Kart Racing">
+<meta property="og:description" content="A free kart racing sim for Windows: wheel, controller, keyboard and VR.">
+<meta property="og:image" content="img/hero.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07090e;
+    --panel: #0f131c;
+    --panel-2: #151a26;
+    --line: rgba(255,255,255,0.08);
+    --ink: rgba(255,255,255,0.94);
+    --dim: rgba(255,255,255,0.58);
+    --accent: #ffc20f;
+    --accent-ink: #1a1300;
+    --red: #f2292a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3, .brand { font-family: "Barlow Condensed", Impact, sans-serif; text-transform: uppercase; letter-spacing: 0.02em; margin: 0; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(7,9,14,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-size: 26px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .brand::before { content: ""; width: 26px; height: 4px; background: var(--accent); display: inline-block; }
+  nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
+  nav ul a { text-decoration: none; color: var(--dim); font-weight: 500; font-size: 15px; }
+  nav ul a:hover { color: var(--ink); }
+
+  /* hero */
+  .hero { position: relative; min-height: 640px; display: flex; align-items: flex-end; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.75) 38%, rgba(7,9,14,0.05) 75%), linear-gradient(0deg, var(--bg) 0%, transparent 35%); }
+  .hero .wrap { position: relative; z-index: 1; padding-bottom: 72px; width: 100%; }
+  .tag { display: inline-block; color: var(--accent); font-weight: 600; letter-spacing: 0.14em; font-size: 13px; text-transform: uppercase; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(64px, 11vw, 132px); line-height: 0.9; font-weight: 800; }
+  .hero p { max-width: 520px; color: var(--dim); font-size: 19px; margin: 20px 0 30px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 16px; transition: transform .12s, background .12s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: #ffd24a; }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.22); color: var(--ink); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.06); }
+  .small { color: var(--dim); font-size: 14px; }
+
+  /* sections */
+  section { padding: 96px 0; }
+  .head { max-width: 640px; margin-bottom: 44px; }
+  .head h2 { font-size: clamp(40px, 6vw, 60px); line-height: 1; font-weight: 800; }
+  .head p { color: var(--dim); font-size: 18px; margin: 14px 0 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: -48px; position: relative; z-index: 2; }
+  .stat { background: var(--panel); padding: 26px 24px; }
+  .stat b { display: block; font-family: "Barlow Condensed", sans-serif; font-size: 44px; line-height: 1; font-weight: 800; color: var(--accent); }
+  .stat span { color: var(--dim); font-size: 14px; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+  .card h3 { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+  .card p { color: var(--dim); margin: 0; font-size: 15px; }
+  .card .bar { width: 32px; height: 4px; background: var(--accent); margin-bottom: 18px; }
+
+  .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  figure img { aspect-ratio: 16/9; object-fit: cover; width: 100%; }
+  figcaption { padding: 14px 18px; color: var(--dim); font-size: 14px; }
+  figcaption b { color: var(--ink); font-weight: 600; }
+
+  .controls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .controls .card ul { list-style: none; padding: 0; margin: 12px 0 0; color: var(--dim); font-size: 14px; }
+  .controls .card li { padding: 7px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; }
+  .controls .card li span:last-child { color: var(--ink); font-weight: 500; text-align: right; }
+
+  .download { background: radial-gradient(1000px 400px at 80% 0%, rgba(255,194,15,0.13), transparent 70%), var(--panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .dl-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: start; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 26px 0 0; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 18px 48px; color: var(--dim); }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; background: var(--panel-2); border: 1px solid var(--line); color: var(--accent); font-weight: 600; display: grid; place-items: center; font-size: 15px; }
+  .steps li b { color: var(--ink); font-weight: 600; }
+  .req { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+  .req h3 { font-size: 24px; margin-bottom: 10px; }
+  .req dl { margin: 0; display: grid; grid-template-columns: 120px 1fr; gap: 10px 14px; font-size: 15px; }
+  .req dt { color: var(--dim); }
+  .req dd { margin: 0; }
+  .note { margin-top: 18px; padding: 14px 16px; border-left: 3px solid var(--accent); background: rgba(255,194,15,0.06); border-radius: 0 10px 10px 0; color: var(--dim); font-size: 14px; }
+  .note b { color: var(--ink); }
+
+  footer { padding: 40px 0; color: var(--dim); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .features, .controls { grid-template-columns: 1fr 1fr; }
+    .shots, .dl-grid { grid-template-columns: 1fr; }
+    .hero { min-height: 560px; }
+    .hero::after { background: linear-gradient(0deg, var(--bg) 0%, rgba(7,9,14,0.7) 60%, rgba(7,9,14,0.35) 100%); }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    .features, .controls { grid-template-columns: 1fr; }
+    section { padding: 72px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">Kart Racing</a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#screens">Screenshots</a></li>
+      <li><a href="#controls">Controls</a></li>
+      <li><a href="#download">Download</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <img src="img/hero.jpg" alt="Six karts racing through a red and white kerbed corner">
+  <div class="wrap">
+    <span class="tag">Free for Windows</span>
+    <h1>Kart<br>Racing</h1>
+    <p>Direct drive, no gears, just you and the line. A kart racing sim built for a steering wheel, and just as happy with a controller, a keyboard or a VR headset.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/guyka2212/kart-racing/releases/latest/download/KartRacingSetup.exe">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+        Download for Windows
+      </a>
+      <a class="btn btn-ghost" href="#features">See what's inside</a>
+    </div>
+    <p class="small" style="margin:14px 0 0">Windows 10 / 11, 64-bit &middot; about 30 MB download</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b>27</b><span>tracks, from tight club circuits to a real track rebuilt from a photo</span></div>
+    <div class="stat"><b>4</b><span>ways to drive: wheel, controller, keyboard &amp; mouse, VR</span></div>
+    <div class="stat"><b>7</b><span>opponents on track, with bot levels from rookie to alien</span></div>
+    <div class="stat"><b>4</b><span>tyres, each with its own temperature and tread wear</span></div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="head">
+      <h2>Feels like a real kart</h2>
+      <p>Grip that builds as your tyres warm up, karts with real weight, and a launch that rewards a clean start.</p>
+    </div>
+    <div class="features">
+      <div class="card"><div class="bar"></div><h3>Made for a wheel</h3><p>Calibrate any HID wheel (Logitech, Thrustmaster, Fanatec, Moza) in a few steps: steering range, pedals and your buttons. Set rotation, steering lock and deadzones to taste.</p></div>
+      <div class="card"><div class="bar"></div><h3>Race in VR</h3><p>Sit in the kart with an OpenXR headset (Quest Link, SteamVR). You see out of a helmet, the menus float in front of you, and a screen on the steering wheel shows speed, position and tyres.</p></div>
+      <div class="card"><div class="bar"></div><h3>Tyres that matter</h3><p>Cold tyres slide, warm tyres bite, worn tyres fade. Watch all four on the HUD or the wheel screen, and dive into the pits for fresh rubber.</p></div>
+      <div class="card"><div class="bar"></div><h3>Pit lane &amp; crew</h3><p>Start from the grid or the pit lane. The speed limiter kicks in, the crew does the tyre change, and you rejoin the race.</p></div>
+      <div class="card"><div class="bar"></div><h3>Bots that race clean</h3><p>Opponents hold their line, brake for slower karts and pick a gap to pass instead of punting you off. Pick one level or a mixed field.</p></div>
+      <div class="card"><div class="bar"></div><h3>Your buttons</h3><p>Button mapping for keyboard &amp; mouse, controller and wheel, with two buttons per action. A hold-to-look-back button shows who's behind you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="screens" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <h2>Screenshots</h2>
+    </div>
+    <div class="shots">
+      <figure><img src="img/cockpit.jpg" alt="First-person view from the kart, chasing an opponent down a straight" loading="lazy"><figcaption><b>First person.</b> The data screen on the steering wheel turns with the rim.</figcaption></figure>
+      <figure><img src="img/vr.jpg" alt="VR view from inside a helmet, looking over the steering wheel at the starting grid" loading="lazy"><figcaption><b>VR helmet view.</b> Brow above, chin bar below, the track through the visor.</figcaption></figure>
+      <figure><img src="img/setup.jpg" alt="Race setup menu with track, laps, opponents and a track map" loading="lazy"><figcaption><b>Race setup.</b> Track, laps, opponents, bot level, max speed, tyre wear and start position.</figcaption></figure>
+      <figure><img src="img/tyres.jpg" alt="Racing behind an opponent with a track record message on screen" loading="lazy"><figcaption><b>Chase the record.</b> Best laps are saved for every track.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="controls" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <h2>Controls</h2>
+      <p>These are the defaults. Change any of them in Settings &rsaquo; Button mapping.</p>
+    </div>
+    <div class="controls">
+      <div class="card"><h3>Wheel</h3><ul>
+        <li><span>Drive</span><span>Wheel &amp; pedals</span></li>
+        <li><span>Menus</span><span>D-pad, A ok, B back</span></li>
+        <li><span>Camera / reset / pause</span><span>Set in calibration</span></li>
+        <li><span>Look back</span><span>Set in calibration</span></li>
+      </ul></div>
+      <div class="card"><h3>Controller</h3><ul>
+        <li><span>Throttle / brake</span><span>RT / LT</span></li>
+        <li><span>Steer</span><span>Left stick</span></li>
+        <li><span>Look back</span><span>RB</span></li>
+        <li><span>Camera</span><span>Y</span></li>
+        <li><span>Reset / pause</span><span>View / Menu</span></li>
+      </ul></div>
+      <div class="card"><h3>Keyboard &amp; mouse</h3><ul>
+        <li><span>Drive</span><span>W A S D / arrows</span></li>
+        <li><span>Mouse steering</span><span>Move + buttons</span></li>
+        <li><span>Look back</span><span>B</span></li>
+        <li><span>Camera / reset</span><span>C / R</span></li>
+        <li><span>Pause</span><span>Esc</span></li>
+      </ul></div>
+      <div class="card"><h3>VR</h3><ul>
+        <li><span>Turn on</span><span>Settings &rsaquo; VR mode</span></li>
+        <li><span>Recentre</span><span>V</span></li>
+        <li><span>Helmet view</span><span>On / off in Settings</span></li>
+        <li><span>Headsets</span><span>Any OpenXR</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="download">
+  <div class="wrap dl-grid">
+    <div>
+      <div class="head" style="margin-bottom:0">
+        <h2>Get on track</h2>
+        <p>Free. No account, no ads.</p>
+      </div>
+      <div class="cta" style="margin-top:26px">
+        <a class="btn btn-primary" href="https://github.com/guyka2212/kart-racing/releases/latest/download/KartRacingSetup.exe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+          Download KartRacingSetup.exe
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/guyka2212/kart-racing/releases">All versions</a>
+      </div>
+      <ol class="steps">
+        <li><b>Run the installer.</b> It installs for your user account, so no admin password is needed. Pick a Start menu or desktop shortcut.</li>
+        <li><b>Plug in your wheel or controller</b> (optional). With a wheel, open Settings &rsaquo; Calibrate wheel &amp; pedals once.</li>
+        <li><b>Race.</b> Pick a track, set the laps and opponents, and start from the grid or the pit lane.</li>
+      </ol>
+      <div class="note"><b>Windows SmartScreen:</b> the installer isn't code-signed yet, so Windows may say it "protected your PC". Click <b>More info</b> &rsaquo; <b>Run anyway</b>. Uninstall any time from Windows Settings &rsaquo; Apps.</div>
+    </div>
+    <div class="req">
+      <h3>System requirements</h3>
+      <dl>
+        <dt>OS</dt><dd>Windows 10 or 11, 64-bit</dd>
+        <dt>Graphics</dt><dd>DirectX 12 capable GPU</dd>
+        <dt>Disk</dt><dd>About 120 MB</dd>
+        <dt>Input</dt><dd>Keyboard &amp; mouse, any Xbox / PlayStation / XInput controller, or a HID steering wheel</dd>
+        <dt>VR</dt><dd>Optional: OpenXR headset via Quest Link, Air Link or SteamVR</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Kart Racing</span>
+    <span><a href="https://github.com/guyka2212/kart-racing/issues">Report a bug</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
