@@ -76,7 +76,8 @@
 
   .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
   figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-  figure img { aspect-ratio: 16/9; object-fit: cover; width: 100%; }
+  figure img { aspect-ratio: 1800/874; object-fit: cover; width: 100%; }
+  figure img[src$="vr.jpg"] { object-position: 50% 60%; }
   figcaption { padding: 14px 18px; color: var(--dim); font-size: 14px; }
   figcaption b { color: var(--ink); font-weight: 600; }
 
@@ -132,7 +133,7 @@
 </nav>
 
 <header class="hero">
-  <img src="img/hero.jpg" alt="Six karts racing through a red and white kerbed corner">
+  <img src="img/battle.jpg" alt="A pack of karts racing through a red and white kerbed corner">
   <div class="wrap">
     <span class="tag">Free for Windows</span>
     <h1>Kart<br>Racing</h1>
@@ -180,10 +181,12 @@
       <h2>Screenshots</h2>
     </div>
     <div class="shots">
-      <figure><img src="img/cockpit.jpg" alt="First-person view from the kart, chasing an opponent down a straight" loading="lazy"><figcaption><b>First person.</b> The data screen on the steering wheel turns with the rim.</figcaption></figure>
-      <figure><img src="img/vr.jpg" alt="VR view from inside a helmet, looking over the steering wheel at the starting grid" loading="lazy"><figcaption><b>VR helmet view.</b> Brow above, chin bar below, the track through the visor.</figcaption></figure>
+      <figure><img src="img/cockpit.jpg" alt="First-person view turning into a corner with a blue kart alongside" loading="lazy"><figcaption><b>First person.</b> The data screen is bolted to the steering wheel and turns with it.</figcaption></figure>
+      <figure><img src="img/vr.jpg" alt="VR view from inside a helmet, looking over the steering wheel into a corner" loading="lazy"><figcaption><b>VR helmet view.</b> Brow above, chin bar below, the track through the visor.</figcaption></figure>
+      <figure><img src="img/battle.jpg" alt="Chase camera behind a kart following opponents through a kerbed corner" loading="lazy"><figcaption><b>Wheel to wheel.</b> Up to seven bots that pick a gap instead of punting you off.</figcaption></figure>
       <figure><img src="img/setup.jpg" alt="Race setup menu with track, laps, opponents and a track map" loading="lazy"><figcaption><b>Race setup.</b> Track, laps, opponents, bot level, max speed, tyre wear and start position.</figcaption></figure>
-      <figure><img src="img/tyres.jpg" alt="Racing behind an opponent with a track record message on screen" loading="lazy"><figcaption><b>Chase the record.</b> Best laps are saved for every track.</figcaption></figure>
+      <figure><img src="img/mapping.jpg" alt="Button mapping screen with keyboard, controller and wheel tabs" loading="lazy"><figcaption><b>Button mapping.</b> Two buttons per action, for keyboard &amp; mouse, controller and wheel.</figcaption></figure>
+      <figure><img src="img/hero.jpg" alt="Chase camera behind a kart on the opening lap with the pack ahead" loading="lazy"><figcaption><b>Chase camera.</b> Switch between first and third person any time.</figcaption></figure>
     </div>
   </div>
 </section>
