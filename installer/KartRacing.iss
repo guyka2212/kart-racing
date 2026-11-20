@@ -2,7 +2,7 @@
 ; Build:  ISCC.exe KartRacing.iss   ->  Output\KartRacingSetup.exe
 
 #define AppName "Kart Racing"
-#define AppVersion "1.0.1"
+#define AppVersion "1.0.2"
 #define AppExe "Kart Racing.exe"
 #define BuildDir "..\karting sim\Builds\KartRacing"
 
@@ -26,6 +26,8 @@ OutputBaseFilename=KartRacingSetup
 Compression=lzma2/ultra64
 SolidCompression=yes
 WizardStyle=modern
+SetupIconFile=..\logo\logo.ico
+WizardSmallImageFile=..\logo\logo-mark-64.png
 UninstallDisplayIcon={app}\{#AppExe}
 UninstallDisplayName={#AppName}
 

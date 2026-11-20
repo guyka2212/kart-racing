@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kart Racing</title>
+<link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta name="description" content="Kart Racing: a free kart racing sim for Windows. Steering wheel with force feedback, controller, keyboard and VR. 27 tracks, tyre wear and temperature, pit stops.">
 <meta property="og:title" content="Kart Racing">
 <meta property="og:description" content="A free kart racing sim for Windows: wheel, controller, keyboard and VR.">
-<meta property="og:image" content="img/hero.jpg">
+<meta property="og:image" content="https://guyka2212.github.io/kart-racing/img/logo-1500.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,7 +38,8 @@
   nav { position: sticky; top: 0; z-index: 10; background: rgba(7,9,14,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
   nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .brand { font-size: 26px; font-weight: 800; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-  .brand::before { content: ""; width: 26px; height: 4px; background: var(--accent); display: inline-block; }
+  .brand img { width: 34px; height: 34px; }
+  .hero-mark { width: 92px; height: 92px; margin-bottom: 18px; display: block; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5)); }
   nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; }
   nav ul a { text-decoration: none; color: var(--dim); font-weight: 500; font-size: 15px; }
   nav ul a:hover { color: var(--ink); }
@@ -122,7 +126,7 @@
 
 <nav>
   <div class="wrap">
-    <a class="brand" href="#">Kart Racing</a>
+    <a class="brand" href="#"><img src="img/logo-mark.svg" alt="">Kart Racing</a>
     <ul>
       <li><a href="#features">Features</a></li>
       <li><a href="#screens">Screenshots</a></li>
@@ -135,6 +139,7 @@
 <header class="hero">
   <img src="img/battle.jpg" alt="A pack of karts racing through a red and white kerbed corner">
   <div class="wrap">
+    <img class="hero-mark" src="img/logo-mark.svg" alt="Kart Racing logo">
     <span class="tag">Free for Windows</span>
     <h1>Kart<br>Racing</h1>
     <p>Direct drive, no gears, just you and the line. A kart racing sim built for a steering wheel, and just as happy with a controller, a keyboard or a VR headset.</p>
@@ -264,7 +269,7 @@
 
 <footer>
   <div class="wrap">
-    <span>Kart Racing</span>
+    <span class="brand" style="font-size:20px"><img src="img/logo-mark.svg" alt="" style="width:26px;height:26px">Kart Racing</span>
     <span><a href="https://github.com/guyka2212/kart-racing/issues">Report a bug</a></span>
   </div>
 </footer>
