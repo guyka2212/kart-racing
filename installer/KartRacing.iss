@@ -2,7 +2,7 @@
 ; Build:  ISCC.exe KartRacing.iss   ->  Output\KartRacingSetup.exe
 
 #define AppName "Kart Racing"
-#define AppVersion "1.0.2"
+#define AppVersion "1.0.3"
 #define AppExe "Kart Racing.exe"
 #define BuildDir "..\karting sim\Builds\KartRacing"
 
@@ -28,7 +28,7 @@ SolidCompression=yes
 WizardStyle=modern
 SetupIconFile=..\logo\logo.ico
 WizardSmallImageFile=..\logo\logo-mark-64.png
-UninstallDisplayIcon={app}\{#AppExe}
+UninstallDisplayIcon={app}\KartRacing.ico
 UninstallDisplayName={#AppName}
 
 [Languages]
@@ -39,11 +39,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "{#BuildDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "*_DoNotShip,*_ButDontShipItWithYourGame"
+; the logo as its own file: shortcuts point at it, so Windows can't show an icon it cached from an older install
+Source: "..\logo\logo.ico"; DestDir: "{app}"; DestName: "KartRacing.ico"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#AppName}"; Filename: "{app}\{#AppExe}"
+Name: "{group}\{#AppName}"; Filename: "{app}\{#AppExe}"; IconFilename: "{app}\KartRacing.ico"
 Name: "{group}\Uninstall {#AppName}"; Filename: "{uninstallexe}"
-Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopicon
+Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; IconFilename: "{app}\KartRacing.ico"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\{#AppExe}"; Description: "{cm:LaunchProgram,{#AppName}}"; Flags: nowait postinstall skipifsilent
