@@ -2,7 +2,7 @@
 ; Build:  ISCC.exe KartRacing.iss   ->  Output\KartRacingSetup.exe
 
 #define AppName "Kart Racing"
-#define AppVersion "1.0.3"
+#define AppVersion "1.0.4"
 #define AppExe "Kart Racing.exe"
 #define BuildDir "..\karting sim\Builds\KartRacing"
 
